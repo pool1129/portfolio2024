@@ -7,7 +7,7 @@ import { useToast } from "@/hooks/toast";
 
 export default function ToastForm() {
   const { addToast } = useToast();
-  const { register, handleSubmit } = useForm<ToastType>();
+  const { register, reset, handleSubmit } = useForm<ToastType>();
 
   return (
     <>
@@ -15,6 +15,7 @@ export default function ToastForm() {
         className={styles.toastForm}
         onSubmit={handleSubmit((data) => {
           addToast(data);
+          reset();
         })}
       >
         <label>제목</label>
