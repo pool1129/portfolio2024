@@ -2,9 +2,9 @@
 
 import { useRecoilValue } from "recoil";
 import { filterToastListState } from "@/stores/toast/store";
+import { MemoizedCard } from "../ToastCard/toastCard";
 
 import React from "react";
-import ToastCard from "../ToastCard/toastCard";
 
 export default function ToastList() {
   const toastList = useRecoilValue(filterToastListState);
@@ -12,7 +12,7 @@ export default function ToastList() {
   return (
     <>
       {toastList.map((toast) => (
-        <ToastCard
+        <MemoizedCard
           key={toast.id}
           id={toast.id}
           title={toast.title}
@@ -20,7 +20,7 @@ export default function ToastList() {
           icon={toast.icon}
           time={toast.time}
         />
-      ))}{" "}
+      ))}
     </>
   );
 }

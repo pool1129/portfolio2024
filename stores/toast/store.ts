@@ -1,4 +1,4 @@
-import { atom, selector, selectorFamily } from "recoil";
+import { atom, selector } from "recoil";
 
 type ToastType = {
   id: number;
@@ -18,7 +18,8 @@ const filterToastListState = selector({
   get: ({ get }) => {
     const list = get(toastListState);
 
-    return list.filter((item) => item.id);
+    console.log(list);
+    return list.filter((item) => item);
   },
 });
 

@@ -2,38 +2,37 @@ import { ToastType, toastListState } from "@/stores/toast/store";
 import { useRecoilState } from "recoil";
 
 let id = 0;
-function getId() {
+function createId() {
   return id++;
 }
-
-const delItemId = (arr: ToastType[], id: number): ToastType[] => {
-  return [...arr.slice(0, id), ...arr.slice(id + 1)];
-};
 
 export function useToast() {
   const [toastList, setToastList] = useRecoilState(toastListState);
 
-  const delToast = (toastId: number) => {
-    const newList = delItemId(toastList, toastId);
-
-    setToastList(newList);
-  };
-
   const addToast = (toast: ToastType) => {
+    const toastId = createId();
+
     setToastList((oldList) => [
       ...oldList,
       {
-        id: getId(),
+        id: toastId,
         title: toast.title,
         desc: toast.desc,
         time: toast.time,
         icon: toast.icon,
+        isLoad: true,
       },
     ]);
 
     setTimeout(() => {
-      delToast(toast.id);
+      delToast(toastId);
     }, toast.time);
+  };
+
+  const delToast = (toastId: number) => {
+    let newList = toastList.filter((data) => data.id != toastId);
+
+    setToastList(newList);
   };
 
   return { addToast };

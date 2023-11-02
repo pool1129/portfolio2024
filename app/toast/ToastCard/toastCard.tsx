@@ -1,32 +1,13 @@
 "use client";
 
-import styled, { keyframes } from "styled-components";
 import styles from "../toast.module.scss";
 import { ToastType } from "@/stores/toast/store";
+import { MemoizedTime } from "../ToastTime/ToastTime";
+import React from "react";
 
 const ToastCard = ({ id, title, desc, time, icon }: ToastType) => {
-  const timeAni = keyframes`
-    0% {
-      width: 100%;
-    }
-    100%{
-      width: 0;
-    }
-  `;
-
-  const Time = styled.div`
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background-color: #e5430f;
-    animation: ${timeAni} ${time}ms linear;
-  `;
-
   return (
     <div className={`${styles.toastCard}`} key={id}>
-      {id}
       <i>
         {icon == "success" && "😍"}
         {icon == "warning" && "😳"}
@@ -36,11 +17,10 @@ const ToastCard = ({ id, title, desc, time, icon }: ToastType) => {
         <p>{title}</p>
         <span>{desc}</span>
       </div>
-      <Time>
-        <div className={`${styles.toastTime}`}></div>
-      </Time>
+
+      <MemoizedTime time={time} />
     </div>
   );
 };
 
-export default ToastCard;
+export const MemoizedCard = React.memo(ToastCard);
