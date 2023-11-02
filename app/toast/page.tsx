@@ -3,7 +3,7 @@
 import styles from "./toast.module.scss";
 import React from "react";
 import ToastForm from "./ToastForm/ToastForm";
-import ToastList from "./ToastList/OldList";
+import ToastList from "./ToastList/ToastList";
 
 export default function ToastPage() {
   return (
