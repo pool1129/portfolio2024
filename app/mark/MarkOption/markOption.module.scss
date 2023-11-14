@@ -1,0 +1,36 @@
+.waterOption {
+  min-width: 100%;
+
+  input,
+  select,
+  button {
+    font-weight: 600;
+    height: 60px;
+    border-radius: 15px;
+    font-size: 16px;
+  }
+
+  input,
+  select {
+    width: 100%;
+    background: white;
+    color: rgb(7 2 18);
+    border: 0;
+    padding: 0 30px;
+    box-shadow: 0 0 2rem rgb(0, 0, 0, 20%);
+  }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: "";
+  }
+}
+
+.markText {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

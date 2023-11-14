@@ -1,12 +1,18 @@
 "use client";
 
 import { read, utils } from "xlsx";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import styles from "./excel.module.scss";
 
+interface Excel {}
+
 export default function ExcelPage() {
-  const [data, setData] = useState<any>();
+  const [test, setTest] = useState<any[]>([]);
+  const [data, setData] = useState([
+    [{ value: "Vanilla" }, { value: "Chocolate" }, { value: "" }],
+    [{ value: "Strawberry" }, { value: "Cookies" }, { value: "" }],
+  ]);
 
   const fileChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
@@ -19,9 +25,12 @@ export default function ExcelPage() {
     const download = await files[0].arrayBuffer();
     const excel = read(download);
     const sheet = excel.Sheets[excel.SheetNames[0]];
-    const data = utils.sheet_to_json(sheet);
+    const data = utils.sheet_to_html(sheet);
 
-    setData(data);
+    console.log(data);
+
+    console.log(Object.keys(data[0]));
+    //setData(data);
   };
 
   return (
@@ -47,7 +56,7 @@ export default function ExcelPage() {
       </div>
 
       {/* EXCEL TABLE */}
-      <div className={styles.excelArea}>{data}</div>
+      <div className={styles.excelArea}></div>
     </div>
   );
 }
