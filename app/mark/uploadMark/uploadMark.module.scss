@@ -34,3 +34,23 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.markImg {
+  width: 100%;
+
+  [type="file"] {
+    display: none;
+  }
+
+  .fileBtn {
+    width: 100%;
+    background: rgb(7 2 18);
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+  }
+}
