@@ -14,7 +14,7 @@ export default function RootLayout({ children }: children) {
           {children}
 
           {/* MODAL AREA */}
-          <div id="portal"></div>
+          <div id="modal"></div>
         </RecoilRoot>
       </body>
     </html>

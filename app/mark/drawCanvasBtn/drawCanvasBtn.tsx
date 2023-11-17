@@ -30,7 +30,7 @@ export default function DrawCanvasBtn() {
 
       {/* PREVIEW IMG */}
       {toggleBtn && (
-        <Modal >
+        <Modal>
           <DrawCanvas setToggleBtn={setToggleBtn} />
         </Modal>
       )}
