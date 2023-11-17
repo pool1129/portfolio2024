@@ -10,4 +10,9 @@ const waterImgState = atom({
   default: "",
 });
 
-export { backImgState, waterImgState };
+const waterPosState = atom({
+  key: "waterPosState",
+  default: "center",
+});
+
+export { backImgState, waterImgState, waterPosState };

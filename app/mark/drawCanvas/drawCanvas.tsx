@@ -1,21 +1,30 @@
 "use client";
 
 import { backImgState, waterImgState } from "@/stores/mark/store";
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useRecoilValue } from "recoil";
 
-const DrawCanvas = () => {
+import styles from "./drawCanvas.module.scss";
+import { useMark } from "@/hooks/mark";
+
+interface Props {
+  setToggleBtn: Dispatch<SetStateAction<boolean>>;
+}
+
+const DrawCanvas = ({ setToggleBtn }: Props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { setPosition } = useMark();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
   const _waterImg = useRecoilValue(waterImgState);
   const _backImg = useRecoilValue(backImgState);
-
-  const [state, setState] = useState({
-    x: 10,
-    y: 10,
-  });
 
   useEffect(() => {
     const ctx = canvasRef.current?.getContext("2d");
@@ -26,24 +35,31 @@ const DrawCanvas = () => {
     waterImg.src = _waterImg;
 
     backImg.onload = function () {
+      let { xPos, yPos } = setPosition(backImg, waterImg);
       if (!ctx) return;
 
-      setWidth(backImg.naturalWidth);
-      setHeight(backImg.naturalHeight);
+      setWidth(backImg.naturalWidth / 2);
+      setHeight(backImg.naturalHeight / 2);
 
       ctx.drawImage(backImg, 0, 0, width, height);
       ctx.globalAlpha = 1;
       ctx.drawImage(
         waterImg,
-        state.x,
-        state.y,
-        waterImg.width / 2,
-        waterImg.height / 2
+        xPos,
+        yPos,
+        waterImg.width / 4,
+        waterImg.height / 4
       );
     };
-  }, [canvasRef, height, state.x, state.y, width, _waterImg, _backImg]);
+  }, [canvasRef, height, width, _waterImg, _backImg, setPosition]);
 
-  return <canvas ref={canvasRef} width={width} height={height} />;
+  return (
+    <div className={styles.drawCanvas}>
+      <canvas ref={canvasRef} width={width} height={height} />
+
+      <button type="button" onClick={() => setToggleBtn(false)}></button>
+    </div>
+  );
 };
 
 export default DrawCanvas;

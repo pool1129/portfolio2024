@@ -10,7 +10,12 @@ export default function RootLayout({ children }: children) {
   return (
     <html lang="ko">
       <body>
-        <RecoilRoot>{children}</RecoilRoot>
+        <RecoilRoot>
+          {children}
+
+          {/* MODAL AREA */}
+          <div id="portal"></div>
+        </RecoilRoot>
       </body>
     </html>
   );
