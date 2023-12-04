@@ -1,9 +1,10 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import styles from "../toast.module.scss";
 import { ToastType } from "@/stores/toast/store";
 import { useToast } from "@/hooks/toast";
+
+import styles from "../toast.module.scss";
 
 export default function ToastForm() {
   const { addToast } = useToast();

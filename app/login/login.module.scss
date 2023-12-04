@@ -1,0 +1,36 @@
+.loginPage {
+  min-height: 100vh;
+  background: #333333;
+  background: -webkit-linear-gradient(to right, #dd1818, #333333);
+  background: linear-gradient(to right, #dd1818, #333333);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  form {
+    display: grid;
+    gap: 15px;
+    min-width: 300px;
+  }
+}
+
+.commentList {
+  margin-top: 20px;
+
+  li {
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 0 30px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    p {
+    }
+
+    span {
+    }
+  }
+}
