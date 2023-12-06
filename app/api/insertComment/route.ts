@@ -15,12 +15,11 @@ export async function POST(req: Request, res: NextApiResponse) {
     user,
     comment,
     date: new Date(),
+    editYn: "F",
   });
 
   res.statusCode = 200;
   res.statusMessage = "성공";
-
-  await client.close();
 
   return NextResponse.json({ res });
 }

@@ -20,12 +20,13 @@ const CommentArea: React.FC<UserProps> = ({ user }) => {
 
   const onSubmit = async (data: UserProps) => {
     await axios
-      .post("/insertComment", JSON.stringify(data))
+      .post("/api/insertComment", JSON.stringify(data))
       .then((res) => res.data)
       .then((data) => {
         const result = data.res;
         if (result.statusCode == 200) {
-          alert("댓글 추가 완료");
+          alert("댓글이 추가되었습니다.");
+          methods.reset();
         }
       })
       .catch((err) => {

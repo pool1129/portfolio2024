@@ -1,6 +1,7 @@
 import { NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import { connectDB } from "@utils/database";
+import { cookies } from "next/headers";
 
 if (!process.env.MONGODB_URL) throw new Error("env error");
 
@@ -20,13 +21,15 @@ export async function POST(req: Request, res: NextApiResponse) {
     });
   }
 
-  // 번호로 댓글 조회하기
-  let result = await db.collection("comments").find({ user: number }).toArray();
-
   res.statusCode = 200;
   res.statusMessage = "성공";
 
-  await client.close();
+  // 번호 쿠키 저장
+  cookies().set({
+    name: "login-number",
+    value: number,
+    path: "/",
+  });
 
-  return NextResponse.json({ res, result });
+  return NextResponse.json({ res });
 }

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import CommentArea from "../CommentArea/commentArea";
-import CommentList from "../CommentArea/commentList";
 
 interface UserInfo {
   number: string;
@@ -12,22 +11,23 @@ interface UserInfo {
   date: string;
 }
 
-export default function LoginForm() {
+interface Props {
+  value?: string;
+}
+
+export default function LoginForm({ value }: Props) {
   const methods = useForm<UserInfo>({ mode: "onChange" });
-  const [comments, setCommenets] = useState<UserInfo[]>();
   const [user, setUser] = useState<string>();
 
   const onSubmit = async (user: UserInfo) => {
     await axios
-      .post("/insertUser", JSON.stringify(user))
+      .post("/api/insertUser", JSON.stringify(user))
       .then((res) => res.data)
       .then((data) => {
         const result = data.res;
-        const resultList = data.result;
 
         if (result.statusCode == 200) {
           setUser(user.number);
-          setCommenets(resultList);
         }
       })
       .catch((err) => {
@@ -39,7 +39,7 @@ export default function LoginForm() {
 
   return (
     <>
-      {user === undefined ? (
+      {value === undefined ? (
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <label>휴대폰 번호</label>
           <input
@@ -51,10 +51,7 @@ export default function LoginForm() {
           <button type="submit">댓글 보기</button>
         </form>
       ) : (
-        <>
-          <CommentArea user={user} />
-          {comments && <CommentList data={comments} />}
-        </>
+        <CommentArea user={value} />
       )}
     </>
   );
