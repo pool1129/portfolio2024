@@ -1,17 +1,17 @@
 import React from "react";
-import LoginForm from "./LoginForm/loginForm";
+import ChatForm from "./ChatForm/chatForm";
 import { MemoCommentList } from "./CommentArea/commentList";
 import { cookies } from "next/headers";
 
-import styles from "./login.module.scss";
+import styles from "./chat.module.scss";
 
-export default function LoginPage() {
+export default function ChatPage() {
   const cookieStore = cookies();
-  const number = cookieStore.get("login-number");
+  const cookie = cookieStore.get("login-number");
 
   return (
     <div className={styles.loginPage}>
-      <LoginForm {...number} />
+      <ChatForm {...cookie} />
 
       {/* COMMENT AREA */}
       <MemoCommentList />
