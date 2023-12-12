@@ -11,6 +11,8 @@ export async function GET(req: Request, res: NextApiResponse) {
 
   const cookieStore = cookies();
   const user = cookieStore.get("login-number");
+
+  //댓글 조회
   let result = await db
     .collection("comments")
     .find({ user: user?.value })
