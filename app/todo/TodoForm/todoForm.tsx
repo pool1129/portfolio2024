@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import CommentArea from "../CommentArea/commentArea";
 
-export default function TodoForm({ value }: CookieType) {
+const TodoForm: React.FC<CookieType> = ({ value }) => {
   const [comments, setCommenets] = useState<Comment[]>();
   const [number, setNumber] = useState(value);
   const methods = useForm<UserInfo>({ mode: "onChange" });
@@ -48,7 +48,8 @@ export default function TodoForm({ value }: CookieType) {
   };
 
   if (!comments) {
-    return getCommentApi();
+    getCommentApi();
+    return;
   }
 
   return (
@@ -69,4 +70,6 @@ export default function TodoForm({ value }: CookieType) {
       )}
     </>
   );
-}
+};
+
+export default TodoForm;
