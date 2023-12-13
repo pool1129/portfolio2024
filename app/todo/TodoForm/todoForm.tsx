@@ -1,23 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import CommentArea from "../CommentArea/commentArea";
 
-export default function ChatForm({ value }: CookieType) {
-  const methods = useForm<UserInfo>({ mode: "onChange" });
+export default function TodoForm({ value }: CookieType) {
+  const [comments, setCommenets] = useState<Comment[]>();
   const [number, setNumber] = useState(value);
+  const methods = useForm<UserInfo>({ mode: "onChange" });
 
   const onSubmit = async (formData: UserInfo) => {
     await axios
-      .post("/api/chat/insertUser", JSON.stringify(formData))
+      .post("/api/todo/insertUser", JSON.stringify(formData))
       .then((res) => res.data)
       .then((data) => {
         const result = data.res;
+        const resultList = data.result;
 
         if (result.statusCode == 200) {
           setNumber(formData.user);
+          setCommenets(resultList);
         }
       })
       .catch((err) => {
@@ -26,6 +29,27 @@ export default function ChatForm({ value }: CookieType) {
 
     return;
   };
+
+  const getCommentApi = () => {
+    axios
+      .get("/api/todo/getComment")
+      .then((res) => res.data)
+      .then((data) => {
+        const result = data.res;
+        const resultList = data.result;
+
+        if (result.statusCode == 200) {
+          setCommenets(resultList);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  if (!comments) {
+    return getCommentApi();
+  }
 
   return (
     <>
@@ -41,7 +65,7 @@ export default function ChatForm({ value }: CookieType) {
           <button type="submit">TODO 보기</button>
         </form>
       ) : (
-        <CommentArea user={number} />
+        <CommentArea user={number} data={comments} />
       )}
     </>
   );

@@ -9,9 +9,11 @@ import React, {
   useState,
 } from "react";
 import { useRecoilValue } from "recoil";
-
-import styles from "./drawCanvas.module.scss";
 import { useMark } from "@/hooks/mark";
+
+import DeleteIcon from "@public/svg/icon_close.svg";
+
+import styles from "../mark.module.scss";
 
 interface Props {
   setToggleBtn: Dispatch<SetStateAction<boolean>>;
@@ -57,7 +59,9 @@ const DrawCanvas = ({ setToggleBtn }: Props) => {
     <div className={styles.drawCanvas}>
       <canvas ref={canvasRef} width={width} height={height} />
 
-      <button type="button" onClick={() => setToggleBtn(false)}></button>
+      <button type="button" onClick={() => setToggleBtn(false)}>
+        <DeleteIcon />
+      </button>
     </div>
   );
 };

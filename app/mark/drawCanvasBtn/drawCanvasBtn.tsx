@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-
-import styles from "./drawCanvasBtn.module.scss";
-import Modal from "@components/modal/modal";
-import DrawCanvas from "../drawCanvas/drawCanvas";
 import { useRecoilValue } from "recoil";
 import { backImgState, waterImgState } from "@/stores/mark/store";
+
+import Modal from "@components/modal/modal";
+import DrawCanvas from "../drawCanvas/drawCanvas";
+
+import styles from "../mark.module.scss";
 
 export default function DrawCanvasBtn() {
   const _waterImg = useRecoilValue(waterImgState);
@@ -24,7 +25,7 @@ export default function DrawCanvasBtn() {
 
   return (
     <>
-      <button className={styles.createBtn} type="button" onClick={handleClick}>
+      <button type="button" onClick={handleClick}>
         워터마크 생성
       </button>
 

@@ -6,9 +6,9 @@ import styles from "./mark.module.scss";
 
 export default function MarkPage() {
   return (
-    <div className={styles.markPage}>
+    <section className={styles.markPage}>
       {/* WATERMARK IMG */}
       <MarkOption />
-    </div>
+    </section>
   );
 }

@@ -21,8 +21,12 @@ export async function POST(req: Request, res: NextApiResponse) {
     });
   }
 
-  res.statusCode = 200;
-  res.statusMessage = "성공";
+  // 댓글 조회
+  let result = await db
+    .collection("comments")
+    .find({ user: user })
+    .sort({ date: -1 })
+    .toArray();
 
   // 번호 쿠키 저장
   cookies().set({
@@ -31,5 +35,8 @@ export async function POST(req: Request, res: NextApiResponse) {
     path: "/",
   });
 
-  return NextResponse.json({ res });
+  res.statusCode = 200;
+  res.statusMessage = "성공";
+
+  return NextResponse.json({ res, result });
 }

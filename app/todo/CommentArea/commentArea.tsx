@@ -1,14 +1,19 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import CommonList from "./commentList";
+import Comment from "./comment";
 
-import styles from "../chat.module.scss";
+import styles from "../todo.module.scss";
 
-export default function CommentArea({ user }: UserInfo) {
-  const [comments, setCommenets] = useState<string>("N");
+type Prop = {
+  user: string;
+  data: Comment[];
+};
+
+export default function CommentArea({ user, data }: Prop) {
+  const [comments, setCommenets] = useState<Comment[]>(data);
   const methods = useForm<UserInfo>({ mode: "onChange" });
 
   const onSubmit = async (data: UserInfo) => {
@@ -18,15 +23,15 @@ export default function CommentArea({ user }: UserInfo) {
 
   const insertCommontApi = (data: UserInfo) => {
     axios
-      .post("/api/chat/insertComment", JSON.stringify(data))
+      .post("/api/todo/insertComment", JSON.stringify(data))
       .then((res) => res.data)
       .then((data) => {
         const result = data.res;
         const resultList = data.result;
 
         if (result.statusCode == 200) {
+          setCommenets(resultList);
           alert("추가되었습니다.");
-          setCommenets("Y");
         }
       })
       .catch((err) => {
@@ -55,7 +60,12 @@ export default function CommentArea({ user }: UserInfo) {
       </form>
 
       {/* COMMENT AREA */}
-      <CommonList data={comments} />
+      <ul className={styles.commentList}>
+        {comments &&
+          comments.map((ele, index) => {
+            return <Comment key={index} {...ele} />;
+          })}
+      </ul>
     </>
   );
 }

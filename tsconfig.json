@@ -23,6 +23,7 @@
       "@hooks/*": ["./hooks/*"],
       "@utils/*": ["./utils/*"],
       "@types/*": ["./types/*"],
+      "@public/*": ["./public/*"],
       "@components/*": ["./components/*"]
     }
   },
