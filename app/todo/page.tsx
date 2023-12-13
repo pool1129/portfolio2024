@@ -8,6 +8,8 @@ export default function TodoPage() {
   const cookieStore = cookies();
   const cookie = cookieStore.get("login-number");
 
+  console.log(cookie);
+
   return (
     <section className={styles.loginPage}>
       <TodoForm {...cookie} />
