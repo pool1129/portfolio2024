@@ -1,11 +1,57 @@
 .markPage {
-  min-height: 100vh;
   background: #c6ffdd;
   background: -webkit-linear-gradient(to right, #f7797d, #fbd786, #c6ffdd);
   background: linear-gradient(to right, #f7797d, #fbd786, #c6ffdd);
+}
+
+.markOption {
+  display: grid;
+  gap: 15px;
+  min-width: 300px;
+
+  [type="file"] {
+    display: none;
+  }
+
+  .fileBtn {
+    width: 100%;
+    background: rgb(7 2 18);
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  button {
+    width: 300px;
+    margin-top: 20px;
+    background: rgb(7 2 18);
+    color: #fff;
+    height: 60px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+}
+
+.drawCanvas {
+  height: auto;
+  overflow-y: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  gap: 30px;
+
+  button {
+    right: 20px;
+    top: 20px;
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+  }
 }

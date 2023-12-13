@@ -1,11 +1,7 @@
 .toastPage {
-  min-height: 100vh;
   background: #fc5c7d;
   background: -webkit-linear-gradient(to right, #6a82fb, #fc5c7d);
   background: linear-gradient(to right, #6a82fb, #fc5c7d);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .toastArea {
@@ -59,4 +55,11 @@
   display: grid;
   gap: 15px;
   min-width: 300px;
+
+  button {
+    width: 100%;
+    margin-top: 20px;
+    background: rgb(7 2 18);
+    color: #fff;
+  }
 }

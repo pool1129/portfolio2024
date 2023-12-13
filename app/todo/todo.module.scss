@@ -1,17 +1,22 @@
 .loginPage {
-  min-height: 100vh;
-  background: #333333;
   background: -webkit-linear-gradient(to right, #dd1818, #333333);
   background: linear-gradient(to right, #dd1818, #333333);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 
   form {
     display: grid;
     gap: 15px;
     min-width: 300px;
+
+    button {
+      width: 300px;
+      margin-top: 20px;
+      background: rgb(7 2 18);
+      color: #fff;
+      height: 60px;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 16px;
+    }
   }
 }
 

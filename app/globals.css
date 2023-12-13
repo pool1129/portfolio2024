@@ -20,6 +20,13 @@ button {
   background-color: transparent;
 }
 
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #portal {
   position: absolute;
   top: 50%;
@@ -59,11 +66,4 @@ select {
   -moz-appearance: none;
   text-indent: 1px;
   text-overflow: "";
-}
-
-button {
-  width: 100%;
-  margin-top: 20px;
-  background: rgb(7 2 18);
-  color: #fff;
 }

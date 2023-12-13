@@ -18,8 +18,11 @@ export async function POST(req: Request, res: NextApiResponse) {
     editYn: "Y",
   });
 
+  //댓글 조회
+  let result = await db.collection("comments").find({ user: user }).toArray();
+
   res.statusCode = 200;
   res.statusMessage = "성공";
 
-  return NextResponse.json({ res });
+  return NextResponse.json({ res, result });
 }

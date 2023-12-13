@@ -7,7 +7,7 @@ import ToastList from "./ToastList/ToastList";
 
 export default function ToastPage() {
   return (
-    <div className={styles.toastPage}>
+    <section className={styles.toastPage}>
       {/* TOAST AREA */}
       <div className={styles.toastArea}>
         <ToastList />
@@ -15,6 +15,6 @@ export default function ToastPage() {
 
       {/* TOAST EDIT */}
       <ToastForm />
-    </div>
+    </section>
   );
 }
