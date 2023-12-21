@@ -8,6 +8,10 @@ const nextConfig = {
 
     return config;
   },
+  reactStrictMode: false,
+  compiler: {
+    styledComponents: true,
+  },
 };
 
 module.exports = nextConfig;

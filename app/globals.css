@@ -1,40 +1,51 @@
 @import url("https://webfontworld.github.io/sunn/SUIT.css");
 
 * {
-  padding: 0;
   margin: 0;
-  font-size: 1rem;
+  padding: 0;
   font-family: "SUIT";
+  font-size: 1rem;
   -webkit-font-smoothing: antialiased;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: #fff;
+}
+
 ul,
-li {
+li,
+a {
+  color: #333;
+  text-decoration: none;
   list-style: none;
 }
 
 button {
-  outline: none;
-  cursor: pointer;
   border: none;
+  outline: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 section {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
 }
 
 #portal {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   position: absolute;
   top: 50%;
   left: 50%;
   background: #fff;
   transform: translate(-50%, -50%);
   border-radius: 15px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 label {
@@ -46,24 +57,24 @@ label {
 input,
 select,
 button {
-  font-weight: 600;
   height: 60px;
-  border-radius: 15px;
   font-size: 16px;
+  font-weight: 600;
+  border-radius: 15px;
 }
 
 input,
 select {
+  padding: 0 30px;
+  border: 0;
+  box-shadow: 0 0 2rem rgb(0, 0, 0, 20%);
   background: white;
   color: rgb(7 2 18);
-  border: 0;
-  padding: 0 30px;
-  box-shadow: 0 0 2rem rgb(0, 0, 0, 20%);
 }
 
 select {
+  text-indent: 1px;
   -webkit-appearance: none;
   -moz-appearance: none;
-  text-indent: 1px;
   text-overflow: "";
 }
