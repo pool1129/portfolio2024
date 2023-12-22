@@ -7,8 +7,6 @@ import { backImgState, waterImgState } from "@/stores/mark/store";
 import Modal from "@components/modal/modal";
 import DrawCanvas from "../drawCanvas/drawCanvas";
 
-import styles from "../mark.module.scss";
-
 export default function DrawCanvasBtn() {
   const _waterImg = useRecoilValue(waterImgState);
   const _backImg = useRecoilValue(backImgState);

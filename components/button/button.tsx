@@ -4,6 +4,18 @@ import { useState, MouseEvent } from "react";
 import styled from "styled-components";
 
 const ButtonStyle = styled("button")<{ $posx: number; $posy: number }>`
+  padding: 10px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+
+  height: auto;
+  font-size: 1.5rem;
+  font-weight: 400;
+
+  line-height: 1.5;
+  cursor: pointer;
+  border-radius: 25px;
   will-change: transform;
   transition: color 0.4s, transform 0.4s;
   transform: translate(
@@ -11,13 +23,35 @@ const ButtonStyle = styled("button")<{ $posx: number; $posy: number }>`
     ${(props) => `${props.$posy}px`}
   );
 
+  &:before {
+    display: inline-block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: -1;
+    width: 200px;
+    height: 200px;
+    background-color: #333;
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    content: "";
+    border-radius: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  &:hover,
   &.active {
     color: #fff;
 
     &:before {
-      top: 0;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
   }
+
+  @media (min-width: 758px) and (max-width: 1023px}) {  
+    font-size: 14px;
+  }
+}
 `;
 
 type ButtonProps = {

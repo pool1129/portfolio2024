@@ -14,7 +14,7 @@ const ProjectWrap = styled("div")<{ $color: string }>`
 export default function Project({ ...data }: ProjectType) {
   return (
     <ProjectWrap $color={data.color} className={styles.projectWrap}>
-      <Link href={data.projectLink}>
+      <Link href="/toy/[slug]" as={data.projectLink}>
         <div className={styles.project}>
           <div className={styles.projectText}>
             <figure></figure>

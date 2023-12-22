@@ -54,7 +54,7 @@ const FollowStyle = styled("div")`
 `;
 
 export default function Cursor() {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState<boolean>(false);
   const cursor = useRef<HTMLDivElement>(null);
   const follower = useRef<HTMLDivElement>(null);
 

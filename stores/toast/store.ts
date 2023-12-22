@@ -18,7 +18,6 @@ const filterToastListState = selector({
   get: ({ get }) => {
     const list = get(toastListState);
 
-    console.log(list);
     return list.filter((item) => item);
   },
 });

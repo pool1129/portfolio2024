@@ -14,7 +14,7 @@ const PROJECT_LIST = [
     projectContent: "TEST1_CONTENT",
     projectImage: "",
     projectType: "web",
-    projectLink: "/todo",
+    projectLink: "/toy/todo",
     color: "#b183cb",
   },
   {
@@ -23,7 +23,7 @@ const PROJECT_LIST = [
     projectContent: "TEST2_CONTENT",
     projectImage: "",
     projectType: "web",
-    projectLink: "/mark",
+    projectLink: "/toy/mark",
     color: "#e26131",
   },
 
