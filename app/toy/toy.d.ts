@@ -3,5 +3,6 @@ type ToyType = {
   title: string;
   subtitle: string;
   content: string;
+  stack: string[];
   url: string;
 };

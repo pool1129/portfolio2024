@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Button from "@/components/button/button";
@@ -24,14 +25,14 @@ const Background = styled.div`
 
 const ModalBox = styled.div`
   margin: 0 auto;
-  padding: 100px 40px 60px 60px;
+  padding: 60px 20px 60px 20px;
   max-width: 1460px;
   width: 100%;
+  max-width: 300px;
   background: #fff;
   border-radius: 12px;
 
-  small,
-  span {
+  small {
     font-size: 1.25rem;
     font-weight: 400;
   }
@@ -50,7 +51,7 @@ const ModalTitle = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: 5.625rem;
+  font-size: 5rem;
   font-weight: 700;
   margin: 10px 0 40px;
 
@@ -69,9 +70,20 @@ const ModalContent = styled.div`
   font-weight: 400;
   margin-bottom: 40px;
   color: #333;
+  white-space: pre;
+
+  div {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
-export default function InitPopup() {
+export default function Init() {
   const [mounted, setMounted] = useState<boolean>(false);
   const [toggleBtn, setToggleBtn] = useState(false);
   const pathname = usePathname();
@@ -81,13 +93,19 @@ export default function InitPopup() {
     setMounted(true);
   }, []);
 
+  const handleOverlay = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget === e.target) {
+      setToggleBtn(true);
+    }
+  };
+
   return (
     <>
       {mounted && !toggleBtn && (
         <ModalPortal>
-          <Background>
+          <Background onClick={(e) => handleOverlay(e)}>
             <ModalBox>
-              <small>※ 어찌고 저찌고</small>
+              <small>※ 해당 페이지는 모바일을 기준으로 제작되었습니다.</small>
 
               <ModalTitle>
                 <p>{result[0].title}</p>
@@ -95,12 +113,26 @@ export default function InitPopup() {
               </ModalTitle>
 
               <ModalContent>
-                <div
-                  dangerouslySetInnerHTML={{ __html: result[0].content }}
-                ></div>
+                <p dangerouslySetInnerHTML={{ __html: result[0].content }}></p>
+
+                <div>
+                  {result[0].stack.map((ele, index) => {
+                    return (
+                      <img
+                        key={index}
+                        src={`https://img.shields.io/badge/${
+                          ele.split(",")[0]
+                        }?style=for-the-badge&logo=${
+                          ele.split(",")[1]
+                        }&logoColor=white`}
+                        alt="기술 아이콘"
+                      />
+                    );
+                  })}
+                </div>
               </ModalContent>
 
-              <Button text={"땡때 보러가기"} check={false}></Button>
+              <Button text={"코드 보러가기"} check={false}></Button>
 
               <button
                 type="button"

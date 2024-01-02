@@ -1,14 +1,23 @@
 "use client";
 
+import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import CommentArea from "../CommentArea/commentArea";
+import HomeIcon from "@public/png/icon_home.png";
 
 const TodoForm: React.FC<CookieType> = ({ value }) => {
   const [comments, setCommenets] = useState<Comment[]>();
   const [number, setNumber] = useState(value);
   const methods = useForm<UserInfo>({ mode: "onChange" });
+
+  const deleteUser = () => {
+    //FIXME: 클라이언트 사이드에서 쿠키 삭제?
+    document.cookie =
+      "login-number=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    setNumber(undefined);
+  };
 
   const onSubmit = async (formData: UserInfo) => {
     await axios
@@ -21,6 +30,7 @@ const TodoForm: React.FC<CookieType> = ({ value }) => {
         if (result.statusCode == 200) {
           setNumber(formData.user);
           setCommenets(resultList);
+          methods.reset();
         }
       })
       .catch((err) => {
@@ -63,10 +73,13 @@ const TodoForm: React.FC<CookieType> = ({ value }) => {
             {...methods.register("user", { required: true, maxLength: 80 })}
           />
 
-          <button type="submit">TODO 보기</button>
+          <button type="submit">로그인</button>
         </form>
       ) : (
-        <CommentArea user={number} data={comments} />
+        <>
+          <Image src={HomeIcon} alt="홈 아이콘" onClick={deleteUser} />
+          <CommentArea user={number} data={comments} />
+        </>
       )}
     </>
   );

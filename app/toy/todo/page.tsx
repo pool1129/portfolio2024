@@ -1,7 +1,7 @@
 import React from "react";
 import TodoForm from "./TodoForm/todoForm";
 import { cookies } from "next/headers";
-import InitPopup from "../init/initPopup";
+import InitPopup from "../init/init";
 
 import styles from "./todo.module.scss";
 
@@ -10,11 +10,13 @@ export default function TodoPage() {
   const cookie = cookieStore.get("login-number");
 
   return (
-    <section className={`${styles.toySection} ${styles.loginPage}`}>
+    <article className={styles.toySection}>
       {/* INIT POPUP */}
       <InitPopup />
 
-      <TodoForm {...cookie} />
-    </section>
+      <section className={styles.loginPage}>
+        <TodoForm {...cookie} />
+      </section>
+    </article>
   );
 }

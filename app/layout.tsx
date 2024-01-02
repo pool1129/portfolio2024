@@ -23,7 +23,7 @@ export default function RootLayout({ children }: children) {
           {/* MODAL AREA */}
           <div id="modal"></div>
 
-          {/* CURSOR */}
+          {/* CURSOR - PC*/}
           <Cursor />
         </RecoilRoot>
       </body>

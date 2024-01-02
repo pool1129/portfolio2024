@@ -49,18 +49,19 @@ export default function CommentArea({ user, data }: Prop) {
         className={styles.commentForm}
         onSubmit={methods.handleSubmit(onSubmit)}
       >
-        <label>{user} 님의 하실 일</label>
+        <p>{user}&#39;s memo</p>
+        <span>남기신 메모를 확인해 보세요!</span>
         <input
           type="text"
-          placeholder="업무를 입력해 주세요."
+          placeholder="메모를 입력해 주세요."
           {...methods.register("comment", { required: true, maxLength: 80 })}
         />
 
-        <button type="submit">TODO 저장</button>
+        <button type="submit">메모 저장</button>
       </form>
 
       {/* COMMENT AREA */}
-      <ul className={styles.commentList}>
+      <ul className={`${styles.commentList}`}>
         {comments &&
           comments.map((ele, index) => {
             return <Comment key={index} {...ele} />;

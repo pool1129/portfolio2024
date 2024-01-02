@@ -1,6 +1,6 @@
 import React from "react";
 import MarkOption from "./markOption/markOption";
-import InitPopup from "../init/initPopup";
+import InitPopup from "../init/init";
 
 import styles from "./mark.module.scss";
 
