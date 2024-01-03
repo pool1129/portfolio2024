@@ -1,59 +1,136 @@
 @import "../toy.module.scss";
-
-.markPage {
-  background: #c6ffdd;
-  background: -webkit-linear-gradient(to right, #f7797d, #fbd786, #c6ffdd);
-  background: linear-gradient(to right, #f7797d, #fbd786, #c6ffdd);
-}
+@import "../../mixin.scss";
 
 .markOption {
-  display: grid;
-  gap: 15px;
-  min-width: 300px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-right: 40px;
+  padding-left: 40px;
+  max-width: 1024px;
+  align-items: center;
+  padding: 80px 20px;
 
-  [type="file"] {
+  > div {
+    width: 100%;
+    max-width: 770px;
+    border-bottom: 1px solid #cacaca;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px 0;
+    }
+  }
+
+  .img {
+    min-height: 400px;
+    border: 1px solid red;
+  }
+
+  label {
+    font-size: 16px;
+    color: #666666;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+
+    @include mobile {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.fileWrap {
+  float: right;
+  width: 190px;
+
+  @include mobile {
+    width: 100%;
+  }
+
+  input {
     display: none;
   }
 
-  .fileBtn {
-    width: 100%;
-    background: rgb(7 2 18);
-    height: 60px;
-    border-radius: 15px;
+  label {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    color: #fff;
-  }
-
-  button {
-    width: 300px;
-    margin-top: 20px;
-    background: rgb(7 2 18);
-    color: #fff;
-    height: 60px;
-    border-radius: 15px;
-    font-weight: 600;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background-color: #f4f4f4;
+    color: #666666;
     font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0;
+
+    &.active,
+    &:hover {
+      background-color: red;
+      color: #fff;
+    }
   }
 }
 
-.drawCanvas {
-  height: auto;
-  overflow-y: auto;
+.inputWrap {
+  float: right;
   display: flex;
-  justify-content: center;
+  gap: 10px;
 
-  button {
-    right: 20px;
-    top: 20px;
-    width: 48px;
-    height: 48px;
+  @include mobile {
+    width: 100%;
+  }
 
+  input {
+    height: 40px;
+    float: left;
+    border: 1px solid #cacaca;
+    border-radius: 14px;
+    color: #555;
+    font-size: 16px;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.radioWrap {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  label {
+    min-width: 100px;
     display: flex;
-    position: absolute;
     align-items: center;
     justify-content: center;
+    max-width: 190px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background-color: #f4f4f4;
+    color: #666666;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.active,
+    &:hover {
+      background-color: red;
+      color: #fff;
+    }
+  }
+
+  input {
+    display: none;
   }
 }

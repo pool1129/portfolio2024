@@ -50,10 +50,11 @@ const ModalTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 5px;
   font-size: 5rem;
   font-weight: 700;
   margin: 10px 0 40px;
+  flex-wrap: wrap;
 
   p {
     -webkit-text-stroke: 1px #000;
