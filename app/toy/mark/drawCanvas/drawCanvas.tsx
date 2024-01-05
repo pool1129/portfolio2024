@@ -31,6 +31,8 @@ const DrawCanvas = () => {
     const img = canvasRef.current?.toDataURL();
     const target = e.currentTarget;
 
+    if (width == "") return;
+
     target.href = img!;
     target.download = "워터마크 이미지";
     target.click();
