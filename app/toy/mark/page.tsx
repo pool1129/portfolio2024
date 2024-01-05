@@ -8,7 +8,7 @@ export default function MarkPage() {
   return (
     <section className={`${styles.toySection} ${styles.markPage}`}>
       {/* INIT POPUP */}
-      <InitPopup />
+      {/* <InitPopup /> */}
 
       {/* WATERMARK IMG */}
       <MarkOption />

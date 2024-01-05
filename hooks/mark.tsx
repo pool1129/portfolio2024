@@ -3,11 +3,11 @@ import {
   waterImgState,
   waterPosState,
 } from "@/stores/mark/store";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 
 export function useMark() {
-  const setBackImg = useSetRecoilState(backImgState);
-  const setWaterImg = useSetRecoilState(waterImgState);
+  const [backImg, setBackImg] = useRecoilState(backImgState);
+  const [waterImg, setWaterImg] = useRecoilState(waterImgState);
   const waterPos = useRecoilValue(waterPosState);
 
   const encodeFileToBase64 = (files: File) => {
@@ -28,35 +28,58 @@ export function useMark() {
     }
 
     encodeFileToBase64(files[0]).then((data: any) => {
-      target.id == "back" ? setBackImg(data) : setWaterImg(data);
+      target.id == "back"
+        ? setBackImg({ ...backImg, img: data })
+        : setWaterImg({ ...waterImg, img: data });
     });
+
+    alert("업로드 되었습니다.");
   };
 
-  const setPosition = (
-    backImg: HTMLImageElement,
-    waterImg: HTMLImageElement
-  ) => {
+  const sizeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.currentTarget;
+    const value = target.value;
+
+    if (value === undefined || value === null) {
+      return;
+    }
+
+    if (target.id.includes("back")) {
+      target.id.includes("width")
+        ? setBackImg({ ...backImg, width: value >= "1024" ? "1024" : value })
+        : setBackImg({ ...backImg, height: value >= "1024" ? "1024" : value });
+    } else {
+      target.id.includes("width")
+        ? setWaterImg({ ...waterImg, width: value >= "1024" ? "1024" : value })
+        : setWaterImg({
+            ...waterImg,
+            height: value >= "1024" ? "1024" : value,
+          });
+    }
+  };
+
+  const setPosition = (backSize: any, waterSize: any) => {
     let xPos, yPos;
 
     if (waterPos == "center") {
-      xPos = (backImg.width / 2 - waterImg.width / 4) / 2;
-      yPos = (backImg.height / 2 - waterImg.height / 4) / 2;
+      xPos = (backSize.width - waterSize.width) / 2;
+      yPos = (backSize.height - waterSize.height) / 2;
     } else if (waterPos == "leftBtm") {
       xPos = 20;
-      yPos = backImg.height / 2 - waterImg.height / 4 - 20;
+      yPos = backSize.height - waterSize.height - 20;
     } else if (waterPos == "leftTop") {
       xPos = 20;
       yPos = 20;
     } else if (waterPos == "rightBtm") {
-      xPos = backImg.width / 2 - waterImg.width / 4 - 20;
-      yPos = backImg.height / 2 - waterImg.height / 4 - 20;
+      xPos = backSize.width - waterSize.width - 20;
+      yPos = backSize.height - waterSize.height - 20;
     } else {
-      xPos = backImg.width / 2 - waterImg.width / 4 - 20;
+      xPos = backSize.width - waterSize.width - 20;
       yPos = 20;
     }
 
     return { xPos, yPos };
   };
 
-  return { encodeFileToBase64, fileHandler, setPosition };
+  return { encodeFileToBase64, fileHandler, setPosition, sizeHandler };
 }
