@@ -1,6 +1,10 @@
 "use client";
 
-import { backImgState, waterImgState } from "@/stores/mark/store";
+import {
+  backImgState,
+  waterImgState,
+  waterOpacityState,
+} from "@/stores/mark/store";
 import React, {
   Dispatch,
   SetStateAction,
@@ -11,57 +15,63 @@ import React, {
 import { useRecoilValue } from "recoil";
 import { useMark } from "@/hooks/mark";
 
-import DeleteIcon from "@public/svg/icon_close.svg";
-
 import styles from "../mark.module.scss";
 
-interface Props {
-  setToggleBtn: Dispatch<SetStateAction<boolean>>;
-}
-
-const DrawCanvas = ({ setToggleBtn }: Props) => {
+const DrawCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { setPosition } = useMark();
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState("");
+  const [height, setHeight] = useState("");
 
   const _waterImg = useRecoilValue(waterImgState);
   const _backImg = useRecoilValue(backImgState);
+  const _waterOpacity = useRecoilValue(waterOpacityState);
+
+  const saveImg = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const img = canvasRef.current?.toDataURL();
+    const target = e.currentTarget;
+
+    if (width == "") return;
+
+    target.href = img!;
+    target.download = "워터마크 이미지";
+    target.click();
+  };
 
   useEffect(() => {
     const ctx = canvasRef.current?.getContext("2d");
+    ctx?.clearRect(0, 0, Number(width), Number(height));
+
     const backImg = new Image();
-    backImg.src = _backImg;
+    backImg.src = _backImg.img;
 
     const waterImg = new Image();
-    waterImg.src = _waterImg;
+    waterImg.src = _waterImg.img;
 
     backImg.onload = function () {
-      let { xPos, yPos } = setPosition(backImg, waterImg);
+      let { xPos, yPos } = setPosition(_backImg, _waterImg);
       if (!ctx) return;
 
-      setWidth(backImg.naturalWidth / 2);
-      setHeight(backImg.naturalHeight / 2);
+      setWidth(_backImg.width);
+      setHeight(_backImg.height);
 
-      ctx.drawImage(backImg, 0, 0, width, height);
       ctx.globalAlpha = 1;
+      ctx.drawImage(backImg, 0, 0, Number(width), Number(height));
+      ctx.globalAlpha = _waterOpacity;
       ctx.drawImage(
         waterImg,
         xPos,
         yPos,
-        waterImg.width / 4,
-        waterImg.height / 4
+        Number(_waterImg.width),
+        Number(_waterImg.height)
       );
     };
-  }, [canvasRef, height, width, _waterImg, _backImg, setPosition]);
+  }, [_backImg, _waterImg, _waterOpacity, height, setPosition, width]);
 
   return (
     <div className={styles.drawCanvas}>
+      <a onClick={(e) => saveImg(e)}>다운로드</a>
       <canvas ref={canvasRef} width={width} height={height} />
-
-      <button type="button" onClick={() => setToggleBtn(false)}>
-        <DeleteIcon />
-      </button>
     </div>
   );
 };

@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Home } from "lucide-react";
 import CommentArea from "../CommentArea/commentArea";
-import HomeIcon from "@public/png/icon_home.png";
 
 const TodoForm: React.FC<CookieType> = ({ value }) => {
   const [comments, setCommenets] = useState<Comment[]>();
@@ -77,7 +76,7 @@ const TodoForm: React.FC<CookieType> = ({ value }) => {
         </form>
       ) : (
         <>
-          <Image src={HomeIcon} alt="홈 아이콘" onClick={deleteUser} />
+          <Home onClick={deleteUser} />
           <CommentArea user={number} data={comments} />
         </>
       )}

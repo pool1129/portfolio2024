@@ -6,6 +6,7 @@ import ModalPortal from "@/components/modal/modalPortal";
 import TOY_LIST from "@/constants/toyData";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 import styled from "styled-components";
 
@@ -50,10 +51,11 @@ const ModalTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 5px;
   font-size: 5rem;
   font-weight: 700;
   margin: 10px 0 40px;
+  flex-wrap: wrap;
 
   p {
     -webkit-text-stroke: 1px #000;
@@ -71,6 +73,7 @@ const ModalContent = styled.div`
   margin-bottom: 40px;
   color: #333;
   white-space: pre;
+  line-height: 1.5;
 
   div {
     display: flex;
@@ -132,7 +135,9 @@ export default function Init() {
                 </div>
               </ModalContent>
 
-              <Button text={"코드 보러가기"} check={false}></Button>
+              <Link href={result[0].code} target="_black">
+                <Button text={"코드 보러가기"} check={false}></Button>
+              </Link>
 
               <button
                 type="button"
