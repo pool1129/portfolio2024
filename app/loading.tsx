@@ -66,8 +66,7 @@ const Dash = styled.div`
   width: 20px;
   height: 10px;
   border-radius: 5px;
-  background: #ff2cbd;
-  box-shadow: 0 0 10px 0 #fecdff;
+  background: #232530;
 
   &:nth-child(1) {
     margin-right: -10px;

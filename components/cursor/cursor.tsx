@@ -83,14 +83,15 @@ export default function Cursor() {
   }, []);
 
   return (
-    <>
+    <div>
       <CursorStyle ref={cursor} className={active ? "active" : ""}>
         <CursorIcon />
       </CursorStyle>
+
       <FollowStyle
         ref={follower}
         className={active ? "active" : ""}
       ></FollowStyle>
-    </>
+    </div>
   );
 }

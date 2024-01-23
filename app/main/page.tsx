@@ -1,9 +1,9 @@
 import React from "react";
 
 import PROJECT_LIST from "@/constants/projectData";
-import Project from "./Project/project";
 import Button from "@/components/button/button";
 
+import Project from "./Project/project";
 import styles from "./main.module.scss";
 
 export default function MainPage() {
@@ -11,9 +11,7 @@ export default function MainPage() {
     <main>
       <article className={styles.mainHead}>
         <div className={styles.container}>
-          <h2 data-scroll data-scroll-speed="3">
-            Project
-          </h2>
+          <h2>Project</h2>
 
           <div className={styles.mainSort}>
             <Button text={"All"} check={true} />
