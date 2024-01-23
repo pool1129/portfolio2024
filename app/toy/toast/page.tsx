@@ -1,5 +1,3 @@
-"use client";
-
 import styles from "./toast.module.scss";
 import React from "react";
 import ToastForm from "./ToastForm/ToastForm";
@@ -8,17 +6,17 @@ import InitPopup from "../init/init";
 
 export default function ToastPage() {
   return (
-    <section className={`${styles.toySection} ${styles.toastPage}`}>
+    <article className={styles.toySection}>
       {/* INIT POPUP */}
       <InitPopup />
 
-      {/* TOAST AREA */}
-      <div className={styles.toastArea}>
+      <section className={styles.toastPage}>
+        {/* TOAST AREA */}
         <ToastList />
-      </div>
 
-      {/* TOAST EDIT */}
-      <ToastForm />
-    </section>
+        {/* TOAST EDIT */}
+        <ToastForm />
+      </section>
+    </article>
   );
 }

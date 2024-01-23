@@ -17,7 +17,7 @@ const ButtonStyle = styled("button")<{ $posx: number; $posy: number }>`
   cursor: pointer;
   border-radius: 25px;
   will-change: transform;
-  transition: color 0.4s, transform 0.4s;
+  transition: transform 1000ms cubic-bezier(0.23, 1, 0.32, 1);
   transform: translate(
     ${(props) => `${props.$posx}px`},
     ${(props) => `${props.$posy}px`}
@@ -32,7 +32,6 @@ const ButtonStyle = styled("button")<{ $posx: number; $posy: number }>`
     width: 200px;
     height: 200px;
     background-color: #333;
-    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     content: "";
     border-radius: 50%;
     transform: translate(-50%, 0);

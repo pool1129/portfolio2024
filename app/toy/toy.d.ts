@@ -5,4 +5,5 @@ type ToyType = {
   content: string;
   stack: string[];
   url: string;
+  code: string;
 };

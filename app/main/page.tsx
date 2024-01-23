@@ -11,7 +11,9 @@ export default function MainPage() {
     <main>
       <article className={styles.mainHead}>
         <div className={styles.container}>
-          <h2>Project</h2>
+          <h2 data-scroll data-scroll-speed="3">
+            Project
+          </h2>
 
           <div className={styles.mainSort}>
             <Button text={"All"} check={true} />
