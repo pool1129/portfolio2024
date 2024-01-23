@@ -8,6 +8,7 @@ const ButtonStyle = styled("button")<{ $posx: number; $posy: number }>`
   border: 1px solid rgba(0, 0, 0, 0.1);
   overflow: hidden;
   position: relative;
+  color: #333
 
   height: auto;
   font-size: 1.5rem;
